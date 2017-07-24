@@ -17,8 +17,35 @@
 
 #include "stdio.h"
 
-static const rmt_item32_t wsLogicZero = {.level0 = 1, .duration0 = 4, .level1 = 0, .duration1 = 8};
-static const rmt_item32_t wsLogicOne = {.level0 = 1, .duration0 = 8, .level1 = 0, .duration1 = 4};
+#ifndef WS2812B_INVERTED
+#define WS2812B_INVERTED 0
+#endif
+
+#ifndef WS2812B_USE_PL9823_TIMING
+#define WS2812B_USE_PL9823_TIMING 0
+#endif
+
+#if WS2812B_INVERTED == 0
+
+#if WS2812B_USE_PL9823_TIMING == 0
+static const rmt_item32_t wsLogicZero = {.level0 = 1, .duration0 = 32, .level1 = 0, .duration1 = 68};
+static const rmt_item32_t wsLogicOne = {.level0 = 1, .duration0 = 64, .level1 = 0, .duration1 = 36};
+#else
+static const rmt_item32_t wsLogicZero = {.level0 = 1, .duration0 = 28, .level1 = 0, .duration1 = 109};
+static const rmt_item32_t wsLogicOne = {.level0 = 1, .duration0 = 109, .level1 = 0, .duration1 = 28};
+#endif
+
+#else
+
+#if WS2812B_USE_PL9823_TIMING == 0
+static const rmt_item32_t wsLogicZero = {.level0 = 0, .duration0 = 32, .level1 = 1, .duration1 = 68};
+static const rmt_item32_t wsLogicOne = {.level0 = 0, .duration0 = 64, .level1 = 1, .duration1 = 36};
+#else
+static const rmt_item32_t wsLogicZero = {.level0 = 0, .duration0 = 28, .level1 = 1, .duration1 = 109};
+static const rmt_item32_t wsLogicOne = {.level0 = 0, .duration0 = 109, .level1 = 1, .duration1 = 28};
+#endif
+
+#endif
 
 static rmt_channel_t channel;
 static unsigned int size;
@@ -48,8 +75,11 @@ void WS2812B_init(rmt_channel_t chan, gpio_num_t gpio, unsigned int psize)
 	rmt_tx.channel = channel;
 	rmt_tx.gpio_num = gpio;
 	rmt_tx.mem_block_num = 1;
-	rmt_tx.clk_div = 8;
+	rmt_tx.clk_div = 1;
 	rmt_tx.tx_config.idle_output_en = 1;
+#if WS2812B_INVERTED == 1
+	rmt_tx.tx_config.idle_level = RMT_IDLE_LEVEL_HIGH;
+#endif
 
 	rmt_config(&rmt_tx);
 	rmt_driver_install(rmt_tx.channel, 0, 0);
