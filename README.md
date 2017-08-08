@@ -1,5 +1,6 @@
 # ESP32-WS2812B
 This tiny library useses the remote module of an esp32 to control WS2812B LED's.
+There is also support for the PL9823 LED's, just set the macro WS2812B_USE_PL9823_TIMING to 1.
 
 ## Usage
 Just copy the folder ESP32-WS2812B into your project and add it to the build process. Call WS2812B_init(...) to initialize the library. The size during initialization is used to allocate enought memory therefore this is the upper limit for setting LED's.
