@@ -26,7 +26,6 @@
 #endif
 
 #if WS2812B_INVERTED == 0
-
 #if WS2812B_USE_PL9823_TIMING == 0
 static const rmt_item32_t wsLogicZero = {.level0 = 1, .duration0 = 32, .level1 = 0, .duration1 = 68};
 static const rmt_item32_t wsLogicOne = {.level0 = 1, .duration0 = 64, .level1 = 0, .duration1 = 36};
@@ -36,7 +35,6 @@ static const rmt_item32_t wsLogicOne = {.level0 = 1, .duration0 = 109, .level1 =
 #endif
 
 #else
-
 #if WS2812B_USE_PL9823_TIMING == 0
 static const rmt_item32_t wsLogicZero = {.level0 = 0, .duration0 = 32, .level1 = 1, .duration1 = 68};
 static const rmt_item32_t wsLogicOne = {.level0 = 0, .duration0 = 64, .level1 = 1, .duration1 = 36};
