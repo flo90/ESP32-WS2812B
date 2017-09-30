@@ -1,0 +1,16 @@
+menu "WS2812B config"
+config WS2812B_INVERTED
+    bool "Invert signal"
+    default n
+    help
+        If this option is selected, the signal gets inverted.
+        This is useful if you want build a one transistor level shifter.
+
+config WS2812B_USE_PL9823_TIMING
+    bool "Use PL9823"
+    default n
+    help
+        PL9823 are nearly like WS2812B, except timing and color order.
+        Choose this to use this library with PL9823 LED's
+        
+endmenu
