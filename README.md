@@ -3,7 +3,7 @@ This tiny library useses the remote module of an esp32 to control WS2812B or PL9
 
 ## Features
 * Control WS2812B or PL9823 LED's
-* Inverting signal for one transistor level shifter
+* Invert signal for one transistor level shifter
 * No realtime issues due to the use of the RMT Module
 * Configurable through 'make menuconfig'
 
