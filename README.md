@@ -17,8 +17,8 @@ git clone https://github.com/flo90/ESP32-WS2812B.git components/WS2812B
 
 git submodule add https://github.com/flo90/ESP32-WS2812B.git components/WS2812B
 
-After this is done, add the following statement before the 'include' statement in the Makefile located in the projects root directory:
-EXTRA_COMPONENT_DIRS := components/WS2812B
+~~After this is done, add the following statement before the 'include' statement in the Makefile located in the projects root directory:
+EXTRA_COMPONENT_DIRS := components/WS2812B~~
 
 A menuconfig entry called "WS2812B config" should appear in the "Component config" submenu.
 
